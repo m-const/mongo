@@ -1,4 +1,5 @@
-FROM redis
-COPY redis.conf /usr/local/etc/redis/redis.conf
-COPY users.acl /etc/redis/users.acl
-CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+FROM mongo
+COPY mongod.conf /etc/mongo/mongod.conf
+ENV   MONGO_INITDB_ROOT_USERNAME: root
+ENV   MONGO_INITDB_ROOT_PASSWORD: root
+CMD ["mongod"]
