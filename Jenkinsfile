@@ -33,7 +33,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                sh "docker run --name ${params.CONTAINER_NAME} -v ${params.VOLUME}:/etc/mongo -p ${PORT}:27019 -d --restart unless-stopped ${params.IMAGE_NAME}-mongo:${DOCKER_IMAGE_VERSION} --config /etc/mongo/mongod.conf"
+                sh "docker run --name ${params.CONTAINER_NAME} -v ${params.VOLUME}:/etc/mongo -p ${PORT}:27017 -d --restart unless-stopped ${params.IMAGE_NAME}-mongo:${DOCKER_IMAGE_VERSION} --config /etc/mongo/mongod.conf"
             }
         }
 
