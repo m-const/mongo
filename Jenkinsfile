@@ -1,7 +1,8 @@
 pipeline {
     
     parameters{
-        string(name: 'CONTAINER_NAME', defaultValue: 'anura', description: "Docker Container Name")
+        string(name: 'CONTAINER_NAME', defaultValue: 'mongo', description: "Docker Container Name")
+        string(name: 'IMAGE_NAME', defaultValue: 'anura', description: "Docker Container Name")
         booleanParam(name: 'RUNTESTS', defaultValue: false, description: "Run Test Section?")
         booleanParam(name: 'CLEAR_DOCKER', defaultValue: true, description: "Force delete other containers running on this port?")
         string(name: 'VOLUME', defaultValue: 'mongo', description: "Docker Volume to use.")
@@ -17,7 +18,7 @@ pipeline {
         stage("Build"){
             steps{
                 echo "Create the Docker Image"
-                sh "docker build -t ${params.CONTAINER_NAME}-mongo:${DOCKER_IMAGE_VERSION} ."
+                sh "docker build -t ${params.IMAGE_NAME}-mongo:${DOCKER_IMAGE_VERSION} ."
             }
         }
         stage("Clean Up"){
@@ -32,7 +33,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                sh "docker run --name ${params.CONTAINER_NAME} -v ${params.VOLUME}:/etc/mongo -p ${PORT}:27019 -d --restart unless-stopped ${params.CONTAINER_NAME}-mongo:${DOCKER_IMAGE_VERSION} --config /etc/mongo/mongod.conf"
+                sh "docker run --name ${params.CONTAINER_NAME} -v ${params.VOLUME}:/etc/mongo -p ${PORT}:27019 -d --restart unless-stopped ${params.IMAGE_NAME}-mongo:${DOCKER_IMAGE_VERSION} --config /etc/mongo/mongod.conf"
             }
         }
 
