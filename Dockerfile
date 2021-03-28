@@ -1,3 +1,3 @@
 FROM mongo:latest
-COPY mongod.conf /etc/mongo/mongod.conf
+COPY mongodb.conf /etc/mongo/mongodb.conf
 CMD ["mongod", "--config", "/etc/mongodb.conf"]
