@@ -9,7 +9,7 @@ pipeline {
 
     }
     environment{
-       PORT="2717"
+       PORT="27017"
        AGENT_IP="192.168.0.126"
        DOCKER_IMAGE_VERSION="1.1"
     }
