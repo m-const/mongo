@@ -10,7 +10,7 @@ pipeline {
     }
     environment{
        PORT="27017"
-       AGENT_IP="192.168.0.126"
+       
        DOCKER_IMAGE_VERSION="1.1"
     }
     agent { label 'docker' } 
@@ -33,7 +33,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                sh "docker run --name ${params.CONTAINER_NAME} -v ${params.VOLUME}:/etc/mongo -p ${PORT}:27017 -d --restart unless-stopped ${params.IMAGE_NAME}-mongo:${DOCKER_IMAGE_VERSION}"
+                sh "docker run --name ${params.CONTAINER_NAME} -v ${params.VOLUME}:/data/db -p ${PORT}:27017 -d --restart unless-stopped ${params.IMAGE_NAME}-mongo:${DOCKER_IMAGE_VERSION}"
             }
         }
 
