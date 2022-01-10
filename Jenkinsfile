@@ -13,7 +13,7 @@ pipeline {
        
        DOCKER_IMAGE_VERSION="1.1"
     }
-    agent { label 'docker' } 
+    agent { label 'dev-docker' } 
     stages{
         stage("Build"){
             steps{
