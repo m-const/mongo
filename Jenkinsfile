@@ -2,7 +2,7 @@ pipeline {
     
     parameters{
         string(name: 'CONTAINER_NAME', defaultValue: 'mongo', description: "Docker Container Name")
-        string(name: 'IMAGE_NAME', defaultValue: 'anura', description: "Docker Container Name")
+        string(name: 'IMAGE_NAME', defaultValue: 'eo', description: "Docker Container Name")
         booleanParam(name: 'RUNTESTS', defaultValue: false, description: "Run Test Section?")
         booleanParam(name: 'CLEAR_DOCKER', defaultValue: true, description: "Force delete other containers running on this port?")
         string(name: 'VOLUME', defaultValue: 'mongo', description: "Docker Volume to use.")
